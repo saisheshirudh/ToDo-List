@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://kit.fontawesome.com/f30fac2c61.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Catamaran:wght@2008" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(64, 108, 109);
+        }
+
+        .container {
+            width: 360px;
+            padding: 33px;
+            text-align: center;
+            background-color: #fff;
+            margin-left: 33%;
+            margin-top: 5px;
+        }
+
+        input {
+            width: 270px;
+            padding: 8px;
+            border: 2px solid rgb(50, 75, 75);
+            outline: none;
+        }
+
+        button {
+            width: 60px;
+            height: 41px;
+            background-color: rgb(4, 29, 29);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            border-radius: 2px;
+            font-size: 19px;
+        }
+
+        .text ul {
+            position: relative;
+            background-color: rgb(48, 93, 78);
+            color: #fff;
+            padding: 7px;
+            font-size: 19px;
+            text-align: left;
+        }
+
+        .text ul i {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To Do List</h1>
+        <div class="inputs">
+            <input type="text" placeholder="Enter your task" id="inp">
+            <button onclick="Add()">Add</button>
+        </div>
+        <div class="text"></div>
+    </div>
+    <script src="todo.js"></script>
+    <script>
+        let inputs = document.getElementById("inp");
+        let text = document.querySelector(".text");
+
+        function Add() {
+            if (inputs.value === "") {
+                alert("PLEASE ENTER THE TASK");
+            } else {
+                let newEle = document.createElement("ul");
+                newEle.innerHTML = `${inputs.value} <i class="fas fa-trash"></i>`;
+                text.appendChild(newEle);
+                inputs.value = "";
+                newEle.querySelector("i").addEventListener("click", remove);
+                function remove() {
+                    newEle.remove();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
